@@ -75,7 +75,7 @@ a {
 /* :hover = while the mouse is over the link. */
 a:hover {
   text-decoration: underline;          /* make sure there's an underline */
-  text-decoration-thickness: 300px;      /* ONE value, with a unit */
+  text-decoration-thickness: 30px;      /* ONE value, with a unit */
   text-underline-offset: 4px;          /* optional: nudge it down from the text */
 }
 
