@@ -1,0 +1,166 @@
+<!--
+  ============================================================
+  HOW TO READ THIS FILE
+  ============================================================
+  This is a comment. Anything between <!-- and the closing marker
+  is ignored by the browser; it's notes for humans.
+
+  HTML is made of ELEMENTS. Most look like this:
+
+      <p class="intro">Hello</p>
+      │ │  └─────────┘ │    └── closing tag (same name, with a slash)
+      │ │      │       └── the content
+      │ │      └── an ATTRIBUTE: extra info, written name="value"
+      │ └── the tag name ("p" = paragraph)
+      └── opening tag
+
+  Elements nest inside each other like boxes in boxes. Indentation
+  doesn't change anything for the browser; it just shows nesting.
+
+  A few elements have no content and no closing tag, e.g. <img> and <meta>.
+  ============================================================
+-->
+
+<!-- Tells the browser "this is modern HTML". Always the first line. -->
+<!DOCTYPE html>
+
+<!-- The root box that holds everything. lang="en" helps screen readers and search engines. -->
+<html lang="en">
+
+  <!--
+    THE HEAD: information ABOUT the page. Nothing in here shows up
+    on the page itself.
+  -->
+  <head>
+    <!-- Which character set to use, so letters like é and – display correctly. -->
+    <meta charset="UTF-8">
+
+    <!-- Makes phones show the page at real size instead of a zoomed-out desktop view. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- The text in the browser tab and in search results. -->
+    <title>Your Name — Portfolio</title>
+
+    <!-- A short summary search engines may show under your link. -->
+    <meta name="description" content="Portfolio of selected work by Your Name.">
+
+    <!--
+      This is the link between the two files. It says "go fetch style.css
+      (in the same folder) and use it to style this page".
+      Delete this line and the page will still work, just unstyled.
+      Try it!
+    -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <!--
+    THE BODY: everything you actually see.
+    The elements below (header, nav, main, section, footer) are
+    "semantic": they don't look like anything by default, they just
+    describe WHAT each part is. That helps screen readers, search
+    engines, and you when you come back to this file later.
+  -->
+  <body>
+
+    <!-- The top of the page: your name and navigation. -->
+    <header class="site-header">
+      <!-- h1 = the single most important heading on the page. Headings go h1 to h6, biggest to smallest in importance. -->
+      <h1 class="site-title">Your Name</h1>
+
+      <!-- nav = a block of navigation links. -->
+      <nav>
+        <!--
+          <a> is a link ("anchor"). href is where it goes.
+          "#work" means "jump to the element on THIS page with id="work"".
+          A full address like "https://example.com" would go to another site,
+          and "about.html" would go to another file in your folder.
+        -->
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- main = the primary content of the page. Only one per page. -->
+    <main>
+
+      <!-- An introduction section. -->
+      <section class="intro">
+        <!-- p = a paragraph of text. -->
+        <p class="lead">
+          I'm a designer and maker. This is my lab site, where I learn how
+          the web works by building it myself.
+        </p>
+      </section>
+
+      <!--
+        The portfolio grid.
+        id="work" is the target for the "Work" link above. An id must be
+        unique on the page. A class (like "project-grid") can be reused
+        on as many elements as you like; CSS mostly uses classes.
+      -->
+      <section id="work">
+        <!-- h2 = a section heading, one level below h1. -->
+        <h2>Selected work</h2>
+
+        <div class="project-grid">
+          <!--
+            div = a generic box with no meaning of its own. Used when
+            you need a container purely for layout or styling.
+
+            article = a self-contained piece of content: here, one project.
+            These three are identical in structure; only the text and image change.
+            Later, a framework can generate these from a list so you don't copy-paste.
+          -->
+          <article class="project">
+            <!--
+              img = an image. No closing tag.
+              src = where the image file lives. These point to a free placeholder
+                    service; later you'll swap in your own files, e.g. src="images/chair.jpg".
+              alt = a text description, read aloud to blind users and shown if the
+                    image fails to load. Always include it.
+            -->
+            <img src="https://picsum.photos/seed/one/800/300" alt="Placeholder image for project one">
+            <h3>Project one</h3>
+            <p>A sentence or two about what this was and what you did.</p>
+          </article>
+
+          <article class="project">
+            <img src="https://picsum.photos/seed/two/800/600" alt="Placeholder image for project two">
+            <h3>Project two</h3>
+            <p>A sentence or two about what this was and what you did.</p>
+          </article>
+
+          <article class="project">
+            <img src="https://picsum.photos/seed/three/800/600" alt="Placeholder image for project three">
+            <h3>Project three</h3>
+            <p>A sentence or two about what this was and what you did.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="about">
+        <h2>About</h2>
+        <p>
+          A short bio. <strong>strong</strong> marks text as important (bold by default),
+          and <em>em</em> adds emphasis (italic by default). Notice they sit
+          inside the paragraph: elements can nest inside a line of text, too.
+        </p>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <!-- A "mailto:" link opens the visitor's email app instead of a web page. -->
+        <p>Say hello at <a href="mailto:you@example.com">you@example.com</a>.</p>
+      </section>
+
+    </main>
+
+    <!-- The bottom of the page. -->
+    <footer class="site-footer">
+      <!-- &copy; is an "entity", a code for a special character. It shows as ©. -->
+      <p>&copy; 2026 Your Name. Hand-built, hosted for free.</p>
+    </footer>
+
+  </body>
+</html>

@@ -1,0 +1,203 @@
+/*
+  ============================================================
+  HOW TO READ THIS FILE
+  ============================================================
+  This is a CSS comment. CSS comments use slash-star ... star-slash.
+
+  CSS is a list of RULES. Each rule looks like this:
+
+      .project h3 {          <- SELECTOR: which elements this rule applies to
+        color: green
+        ;         <- DECLARATION: property: value;
+        font-size: 1.2rem;   <- another declaration (semicolon ends each one)
+      }                      <- curly braces wrap the declarations
+
+  Reading selectors:
+      p            every <p> element
+      .project     every element with class="project"   (dot = class)
+      #work        the element with id="work"           (hash = id)
+      .project h3  every <h3> that is INSIDE a .project (space = "inside")
+      a:hover      a link while the mouse is over it    (colon = a state)
+
+  "Cascading" means: when two rules disagree, the more specific selector
+  wins, and if they're equally specific, the one lower in the file wins.
+
+  Units you'll see:
+      px   fixed pixels
+      rem  relative to the base text size (1rem is usually 16px). Scales if
+           the visitor enlarges their text, so it's preferred for sizes.
+      %    a percentage of the parent box
+  ============================================================
+*/
+
+
+/* ---------- 1. Variables ----------
+   :root means "the whole document". Names starting with -- are custom
+   variables. Define a color once here, use it anywhere with var(--name).
+   Change it here and it changes everywhere. */
+:root {
+  --text: #1f1f1f;
+  --muted: #6b6b6b;
+  --background: #ffff6e;
+  --accent: #b5532c;
+  --max-width: 1100px;
+}
+
+
+/* ---------- 2. Base styles ----------
+   * means "every element". box-sizing: border-box makes width include
+   padding and border, which makes sizes far easier to reason about.
+   Almost every site has this line. */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;                      /* browsers add a default margin; remove it */
+  font-family: system-ui, sans-serif;  /* use the device's own UI font; fall back to any sans-serif */
+  font-size: 1.0625rem;           /* 17px, slightly larger than default for readability */
+  line-height: 1.6;               /* space between lines of text, as a multiple of font size */
+  color: var(--text);             /* using a variable from section 1 */
+  background: var(--background);
+}
+
+/* Images: never wider than their container, and no odd gap underneath. */
+img {
+  max-width: 100%;
+  height: auto;     /* keep the original proportions when the width shrinks */
+  display: block;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* :hover = while the mouse is over the link. */
+a:hover {
+  text-decoration: underline;          /* make sure there's an underline */
+  text-decoration-thickness: 300px;      /* ONE value, with a unit */
+  text-underline-offset: 4px;          /* optional: nudge it down from the text */
+}
+
+
+/* ---------- 3. The box model ----------
+   Every element is a rectangle with layers, from inside out:
+     content -> padding (inside space) -> border -> margin (outside space)
+   Open your browser's developer tools (right-click > Inspect) on any element
+   and you'll see this drawn as nested colored boxes.
+
+   Shorthand for padding and margin:
+     padding: 2rem;          all four sides
+     padding: 2rem 1rem;     top/bottom, then left/right
+     margin: 0 auto;         0 top/bottom, "auto" left/right = centered horizontally */
+header,
+main,
+footer {
+  max-width: var(--max-width);  /* don't stretch wider than this on big screens */
+  margin: 0 auto;               /* center the box in the window */
+  padding: 0 1.5rem;            /* breathing room at the sides, especially on phones */
+}
+
+
+/* ---------- 4. Header layout with FLEXBOX ----------
+   display: flex lines the children up in a row. Here the children are the
+   <h1> and the <nav>. Flexbox is for arranging things in ONE direction. */
+.site-header {
+  display: flex;
+  justify-content: space-between;  /* push children to opposite ends of the row */
+  align-items: center;             /* line them up vertically in the middle */
+  flex-wrap: wrap;                 /* allow wrapping onto a new line if there isn't room */
+  gap: 1rem;                       /* space between the children */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* Links inside the nav, using the "inside" (space) selector. */
+nav a {
+  margin-left: 1.25rem;
+  color: var(--text);
+  text-decoration: none;  /* remove the underline */
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+
+/* ---------- 5. Text ---------- */
+.lead {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  max-width: 40ch;   /* ch = width of one character; ~40 characters per line reads comfortably */
+  margin: 2rem 0 4rem;
+}
+
+h2 {
+  font-size: 1.1rem;
+  text-transform: uppercase;  /* displays as capitals without changing the HTML */
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-top: 4rem;
+}
+
+
+/* ---------- 6. Portfolio layout with GRID ----------
+   Grid arranges children in rows AND columns at once.
+   This one line is doing a lot:
+     repeat(auto-fill, ...)       make as many columns as fit
+     minmax(280px, 1fr)           each column at least 280px wide, sharing
+                                  leftover space equally (1fr = one share)
+   Result: 3 columns on a laptop, 2 on a tablet, 1 on a phone, with
+   no extra code. Resize your browser window to watch it happen. */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.project img {
+  border-radius: 6px;
+  aspect-ratio: 4 / 3;   /* force a consistent shape... */
+  object-fit: cover;     /* ...and crop the image to fill it rather than squash it */
+}
+
+.project h3 {
+  margin: 0.75rem 0 0.25rem;
+}
+
+.project p {
+  margin: 0;
+  color: var(--muted);
+}
+
+
+/* ---------- 7. Footer ---------- */
+.site-footer {
+  margin-top: 6rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid #ddd;  /* width, style, color */
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+
+/* ---------- 8. Responsive tweak with a MEDIA QUERY ----------
+   A media query wraps rules that only apply under a condition.
+   Here: "only when the window is 600px wide or narrower" (i.e. phones).
+   The grid already adapts on its own; this just shrinks the big intro text. */
+@media (max-width: 600px) {
+  .lead {
+    font-size: 1.25rem;
+  }
+
+  nav a {
+    margin-left: 0;
+    margin-right: 1.25rem;
+  }
+}
