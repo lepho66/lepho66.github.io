@@ -162,7 +162,7 @@ h2 {
 
 .project img {
   border-radius: 6px;
-  aspect-ratio: 4 / 3;   /* force a consistent shape... */
+  aspect-ratio: 3 / 5;   /* force a consistent shape... */
   object-fit: cover;     /* ...and crop the image to fill it rather than squash it */
 }
 
